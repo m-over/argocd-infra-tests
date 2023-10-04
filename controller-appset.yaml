@@ -1,0 +1,28 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: infra-controllers
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: "https://github.com/m-over/argocd-infra-tests.git"
+        revision: HEAD
+        directories:
+          - path: infrastructure/controllers/*
+  template:
+    metadata:
+      name: "app-infra-controllers-{{path[1]}}"
+    spec:
+      project: default
+      source:
+        repoURL: "https://github.com/m-over/argocd-infra-tests.git"
+        targetRevision: HEAD
+        path: apps/{{path[1]}}
+      destination:
+        server: "https://kubernetes.default.svc"
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: false
