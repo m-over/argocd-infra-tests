@@ -19,7 +19,7 @@ spec:
       source:
         repoURL: "https://github.com/m-over/argocd-infra-tests.git"
         targetRevision: HEAD
-        path: apps/{{path[1]}}
+        path: infrastructure/controllers/{{path[1]}}
       destination:
         server: "https://kubernetes.default.svc"
       syncPolicy:
