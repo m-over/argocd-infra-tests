@@ -15,7 +15,7 @@ spec:
     metadata:
       name: "app-infra-configs-{{path[2]}}"
     spec:
-      project: default
+      project: infra
       source:
         repoURL: "https://github.com/m-over/argocd-infra-tests.git"
         targetRevision: HEAD
