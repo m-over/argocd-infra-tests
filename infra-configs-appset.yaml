@@ -1,0 +1,28 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: infra-configs
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: "https://github.com/m-over/argocd-infra-tests.git"
+        revision: HEAD
+        directories:
+          - path: infrastructure/configs/*
+  template:
+    metadata:
+      name: "app-infra-configs-{{path[2]}}"
+    spec:
+      project: default
+      source:
+        repoURL: "https://github.com/m-over/argocd-infra-tests.git"
+        targetRevision: HEAD
+        path: infrastructure/configs/{{path[2]}}
+      destination:
+        server: "https://kubernetes.default.svc"
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: false
