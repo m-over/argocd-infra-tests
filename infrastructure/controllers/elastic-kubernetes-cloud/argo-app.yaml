@@ -5,7 +5,7 @@ metadata:
   name: elastic-operator
   namespace: argocd
 spec:
-  project: default
+  project: infra
   source:
     chart: eck-operator
     repoURL: https://helm.elastic.co
