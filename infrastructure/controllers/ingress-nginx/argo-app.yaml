@@ -14,8 +14,9 @@ spec:
       releaseName: ingress-nginx
       valuesObject:
         controller:
-          annotations:
-            service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+          service:
+            annotations:
+              service.beta.kubernetes.io/azure-load-balancer-internal: "true"
   destination:
     server: "https://kubernetes.default.svc"
     namespace: ingress-nginx
